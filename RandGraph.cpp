@@ -9,10 +9,10 @@ using namespace std;
 
 //Returns an int**, can be treated just like a 2D array of size (n x n).
 // "n" is the size of the adjacency Matrix (number of nodes)
-// "percent" is the percentage of nodes that a the avergae node has a path to
+// "percent" is a double for the odds that a given node x will be attached to different node y
 // "largestWeight" is, like is sounds, the largest/heaviest weight allowed.
 // "twoWay" is true if two way paths, false if one way paths
-int** adjacencyMatrixGenerator(int n, int percent, int largestWeight, bool twoWay){
+int** adjacencyMatrixGenerator(int n, double percent, int largestWeight, bool twoWay){
     
     //Not necessary
     if((twoWay!=true) && (twoWay!=false)){
@@ -22,14 +22,11 @@ int** adjacencyMatrixGenerator(int n, int percent, int largestWeight, bool twoWa
     largestWeight--;
     
     srand(time(NULL));
-    int newPercent;
-    if(percent>=0 && percent<=100){
-        newPercent = 100 - percent;
-    }
-    //default case
-    else{
-        newPercent = 80;
-    }
+    
+    
+    double p = (percent * .01) * n; 
+	double newPercent = n + p;
+	newPercent = newPercent - n*2;
     
     int** adjMatrix = new int*[n];
     for(int a = 0; a < n; a++){
@@ -39,7 +36,7 @@ int** adjacencyMatrixGenerator(int n, int percent, int largestWeight, bool twoWa
     if(twoWay){
         for(int i = 0; i < n; i++){
             for(int j = i; j < n; j++){
-                m = (rand()%100) - newPercent;
+                m = newPercent + rand()%n;
                 if(m<0){
                     adjMatrix[i][j] = INF2;
                     adjMatrix[j][i] = INF2;
@@ -55,7 +52,7 @@ int** adjacencyMatrixGenerator(int n, int percent, int largestWeight, bool twoWa
     else{
         for(int q = 0; q < n; q++){
             for(int w = 0; w < n; w++){
-                m = (rand()%100) - (newPercent -1);
+                m = newPercent + rand()%n;
                 if(m<0){
                     adjMatrix[q][w] = INF2;
                 }
@@ -72,17 +69,17 @@ int** adjacencyMatrixGenerator(int n, int percent, int largestWeight, bool twoWa
     return adjMatrix;
 }
 
-/*
-int main(){
-    int n = 10;
-    int percent = 46;
-    bool diagonal = true;
-    int largestWeightIn = 12;
-    int** meme = adjacencyMatrixGenerator(n, percent, largestWeightIn, diagonal);
-    for(int i =0; i<n; i++){
-        for(int j = 0; j<n; j++){
-            cout<<meme[i][j]<<"   ";
-        }
-        cout<<endl;
-    }
-}*/
+
+// int main(){
+//     int n = 10;
+//     int percent = 46;
+//     bool diagonal = true;
+//     int largestWeightIn = 12;
+//     int** meme = adjacencyMatrixGenerator(n, percent, largestWeightIn, diagonal);
+//     for(int i =0; i<n; i++){
+//         for(int j = 0; j<n; j++){
+//             cout<<meme[i][j]<<", ";
+//         }
+//         cout<<endl;
+//     }
+// }
