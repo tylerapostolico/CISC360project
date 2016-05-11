@@ -66,18 +66,3 @@ int** adjacencyMatrixGenerator(int n, double percent, int largestWeight, bool tw
     }
     return adjMatrix;
 }
-
-
-// int main(){
-//     int n = 10;
-//     int percent = 46;
-//     bool diagonal = true;
-//     int largestWeightIn = 12;
-//     int** meme = adjacencyMatrixGenerator(n, percent, largestWeightIn, diagonal);
-//     for(int i =0; i<n; i++){
-//         for(int j = 0; j<n; j++){
-//             cout<<meme[i][j]<<", ";
-//         }
-//         cout<<endl;
-//     }
-// }

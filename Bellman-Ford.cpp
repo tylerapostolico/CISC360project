@@ -4,7 +4,6 @@
 #include <string.h>
 #include <limits.h>
 
-#include "RandGraph.cpp"
 
 
 #define INF 99999
@@ -55,7 +54,7 @@ void printArr(int* dist, int n)
 // all other vertices using Bellman-Ford algorithm.  The function
 // also detects negative weight cycle
 
-void BellmanFord(int** input, int src, int V)
+void BellmanFord(int V, int** input, int src)
 {
     int E = 0;
     for (int i = 0; i < V; i++) {
@@ -66,7 +65,6 @@ void BellmanFord(int** input, int src, int V)
         }
     }
     
-    cout << E;
     
     Graph* graph = createGraph(V, E);
     
@@ -121,190 +119,8 @@ void BellmanFord(int** input, int src, int V)
             printf("Graph contains negative weight cycle");
     }
  
-    printArr(dist, V);
+   // printArr(dist, V);
  
     return;
 }
  
-// Driver program to test above functions
-int main()
-{
-    /* Let us create the graph given in above example */
-    int V = 200;  // Number of vertices in graph
-    int E = 31;  // Number of edges in graph
-    struct Graph* graph = createGraph(V, E);
- 
-   //edge 0-29, 31 total. please test these idk how atm. missed a node from h->m
-
-   //graph 1 data
-   graph->edge[0].src = 0;//a
-   graph->edge[0].dest = 1;//b
-   graph->edge[0].weight = 3;
-   
-   graph->edge[1].src = 0;//a
-   graph->edge[1].dest = 2;//c
-   graph->edge[1].weight = 2;
-   
-   graph->edge[2].src = 0;//a
-   graph->edge[2].dest = 19;//t
-   graph->edge[2].weight = 100;
-   
-   graph->edge[3].src = 2;//b
-   graph->edge[3].dest = 7;//h
-   graph->edge[3].weight = 3;
-   
-   graph->edge[4].src = 1;//b
-   graph->edge[4].dest = 8;//i
-   graph->edge[4].weight = 6;
-   
-   graph->edge[5].src = 2;//c
-   graph->edge[5].dest = 4;//e
-   graph->edge[5].weight = 1;
-   
-   graph->edge[6].src = 3;//d
-   graph->edge[6].dest = 9;//j
-   graph->edge[6].weight = 4;
-   
-   graph->edge[7].src = 4;//e
-   graph->edge[7].dest = 6;//g
-   graph->edge[7].weight = 1;
-   
-   graph->edge[8].src = 5;//f
-   graph->edge[8].dest = 11;//l
-   graph->edge[8].weight = 1;
-   
-   graph->edge[9].src = 6;//g
-   graph->edge[9].dest = 11;//l
-   graph->edge[9].weight = 3;
-   
-   graph->edge[10].src = 6;//g
-   graph->edge[10].dest = 15;//p
-   graph->edge[10].weight = 4;
-   
-   graph->edge[11].src = 7;//h
-   graph->edge[11].dest = 4;//e
-   graph->edge[11].weight = 2;
-   
-   graph->edge[12].src = 7;//h
-   graph->edge[12].dest = 8;//i
-   graph->edge[12].weight = 7;
-   
-   graph->edge[13].src = 8;//i
-   graph->edge[13].dest = 3;//d
-   graph->edge[13].weight = 3;
-   
-   graph->edge[14].src = 8;//i
-   graph->edge[14].dest = 13;//n
-   graph->edge[14].weight = 6;
-   
-   graph->edge[15].src = 8;//i
-   graph->edge[15].dest = 9;//j
-   graph->edge[15].weight = 5;
-   
-   graph->edge[16].src = 9;//j
-   graph->edge[16].dest = 10;//k
-   graph->edge[16].weight = 1;
-   
-   graph->edge[17].src = 9;//j
-   graph->edge[17].dest = 14;//o
-   graph->edge[17].weight = 6;
-   
-   graph->edge[18].src = 10;//k
-   graph->edge[18].dest = 14;//o
-   graph->edge[18].weight = 2;
-   
-   graph->edge[19].src = 11;//l
-   graph->edge[19].dest = 15;//p
-   graph->edge[19].weight = 2;
-   
-   graph->edge[20].src = 12;//m
-   graph->edge[20].dest = 16;//q
-   graph->edge[20].weight = 1;
-   
-   graph->edge[21].src = 13;//n
-   graph->edge[21].dest = 19;//t
-   graph->edge[21].weight = 1;
-   
-   graph->edge[22].src = 14;//o
-   graph->edge[22].dest = 19;//t
-   graph->edge[22].weight = 3;
-   
-   graph->edge[23].src = 15;//p
-   graph->edge[23].dest = 13;//n
-   graph->edge[23].weight = 1;
-   
-   graph->edge[24].src = 16;//q
-   graph->edge[24].dest = 13;//n
-   graph->edge[24].weight = 3;
-   
-   graph->edge[25].src = 16;//q
-   graph->edge[25].dest = 17;//r
-   graph->edge[25].weight = 2;
-   
-   graph->edge[26].src = 16;//q
-   graph->edge[26].dest = 18;//s
-   graph->edge[26].weight = 4;
-   
-   graph->edge[27].src = 17;//r
-   graph->edge[27].dest = 12;//m
-   graph->edge[27].weight = 2;
-   
-   graph->edge[28].src = 18;//s
-   graph->edge[28].dest = 19;//t
-   graph->edge[28].weight = 1;
-   
-   graph->edge[29].src = 19;//t
-   graph->edge[29].dest = 0;//a
-   graph->edge[29].weight = 100;
-   
-   graph->edge[30].src = 7;//h
-   graph->edge[30].dest = 12;//m
-   graph->edge[30].weight = 4;
-
-   //end of our first graph
- 
-    //BellmanFord(graph, 0);
-    
-
-    // int ** graph2 = new int*[20];
-    
-    // int graph3[20][20] =  {{0  , 3  , 2  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 100},
-    //                     {3  , 0  , INF, INF, INF, INF, INF, 3  , 6  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
-    //                     {2  , INF, 0  , INF, 1  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
-    //                     {INF, INF, INF, 0  , INF, INF, INF, INF, 3  , 4  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
-    //                     {INF, INF, 1  , INF, 0  , INF, 1  , 2  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
-    //                     {INF, INF, INF, INF, INF, 0  , 1  , INF, INF, INF, INF, 1  , INF, INF, INF, INF, INF, INF, INF, INF},
-    //                     {INF, INF, INF, INF, 1  , 1  , 0  , INF, INF, INF, INF, 3  , INF, INF, INF, 4  , INF, INF, INF, INF},
-    //                     {INF, 3  , INF, INF, 2  , INF, INF, 0  , 7  , INF, INF, INF, 4  , INF, INF, 1  , INF, INF, INF, INF},
-    //                     {INF, 6  , INF, 3  , INF, INF, INF, 7  , 0  , 5  , INF, INF, INF, 6  , INF, INF, INF, INF, INF, INF},
-    //                     {INF, INF, INF, 4  , INF, INF, INF, INF, 5  , 0  , 1  , INF, INF, INF, 6  , INF, INF, INF, INF, INF},
-    //                     {INF, INF, INF, INF, INF, INF, INF, INF, INF, 1  , 0  , INF, INF, INF, 2  , INF, INF, INF, INF, INF},
-    //                     {INF, INF, INF, INF, INF, 1  , 3  , INF, INF, INF, INF, 0  , INF, INF, INF, 2  , INF, INF, INF, INF},
-    //                     {INF, INF, INF, INF, INF, INF, INF, 4  , INF, INF, INF, INF, 0  , INF, INF, INF, 1  , 2  , INF, INF},
-    //                     {INF, INF, INF, INF, INF, INF, INF, INF, 6  , INF, INF, INF, INF, 0  , INF, INF, 3  , INF, INF, 1  },
-    //                     {INF, INF, INF, INF, INF, INF, INF, INF, INF, 6  , 2  , INF, INF, INF, 0  , INF, INF, INF, INF, 3  },
-    //                     {INF, INF, INF, INF, INF, INF, 4  , 1  , INF, INF, INF, 2  , INF, INF, INF, 0  , INF, INF, INF, INF},
-    //                     {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 1  , 3  , INF, INF, 0  , 2  , 4  , INF},
-    //                     {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 2  , INF, INF, INF, 2  , 0  , INF, INF},
-    //                     {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 4  , INF, 0  , 1  },
-    //                     {100, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 1  , 3  , INF, INF, INF, 1  , 0  }};
-     
-
-    // for (int i = 0; i < 10; i++) {
-    //     for (int j = 0; j < 10; j++) {
-    //         graph2[i][j] = graph3[i][j];
-    //     }
-    // } 
-    
-        
-    
-    //int** graph2 = graph3;
-    
-
-    int** graph3= adjacencyMatrixGenerator(V,2,100,true);
-
-    BellmanFord(graph3,0,V);
-    return 0;
-}
-
-// Source: http://www.geeksforgeeks.org/dynamic-programming-set-23-bellman-ford-algorithm/

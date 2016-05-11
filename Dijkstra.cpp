@@ -4,7 +4,6 @@
 // A C / C++ program for Dijkstra's single source shortest path algorithm.
 // The program is for adjacency matrix representation of the graph
  
-#include "RandGraph.cpp"
 #include <stdio.h>
 #include <limits.h>
 // source: http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/
@@ -72,40 +71,7 @@ void dijkstra(int V, int** graph, int src)
      }
  
      // print the constructed distance array
-     printSolution(V, dist, V);
+    // printSolution(V, dist, V);
 }
 
 #define INF 99999
-// driver program to test above function
-int main()
-{
-   int V = 2000;
-   /* Let us create the example graph discussed above */
-   /*int graph2[V][V] = { {0  , 3  , 2  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 100},
-                        {3  , 0  , INF, INF, INF, INF, INF, 3  , 6  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
-                        {2  , INF, 0  , INF, 1  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
-                        {INF, INF, INF, 0  , INF, INF, INF, INF, 3  , 4  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
-                        {INF, INF, 1  , INF, 0  , INF, 1  , 2  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
-                        {INF, INF, INF, INF, INF, 0  , 1  , INF, INF, INF, INF, 1  , INF, INF, INF, INF, INF, INF, INF, INF},
-                        {INF, INF, INF, INF, 1  , 1  , 0  , INF, INF, INF, INF, 3  , INF, INF, INF, 4  , INF, INF, INF, INF},
-                        {INF, 3  , INF, INF, 2  , INF, INF, 0  , 7  , INF, INF, INF, 4  , INF, INF, 1  , INF, INF, INF, INF},
-                        {INF, 6  , INF, 3  , INF, INF, INF, 7  , 0  , 5  , INF, INF, INF, 6  , INF, INF, INF, INF, INF, INF},
-                        {INF, INF, INF, 4  , INF, INF, INF, INF, 5  , 0  , 1  , INF, INF, INF, 6  , INF, INF, INF, INF, INF},
-                        {INF, INF, INF, INF, INF, INF, INF, INF, INF, 1  , 0  , INF, INF, INF, 2  , INF, INF, INF, INF, INF},
-                        {INF, INF, INF, INF, INF, 1  , 3  , INF, INF, INF, INF, 0  , INF, INF, INF, 2  , INF, INF, INF, INF},
-                        {INF, INF, INF, INF, INF, INF, INF, 4  , INF, INF, INF, INF, 0  , INF, INF, INF, 1  , 2  , INF, INF},
-                        {INF, INF, INF, INF, INF, INF, INF, INF, 6  , INF, INF, INF, INF, 0  , INF, INF, 3  , INF, INF, 1  },
-                        {INF, INF, INF, INF, INF, INF, INF, INF, INF, 6  , 2  , INF, INF, INF, 0  , INF, INF, INF, INF, 3  },
-                        {INF, INF, INF, INF, INF, INF, 4  , 1  , INF, INF, INF, 2  , INF, INF, INF, 0  , INF, INF, INF, INF},
-                        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 1  , 3  , INF, INF, 0  , 2  , 4  , INF},
-                        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 2  , INF, INF, INF, 2  , 0  , INF, INF},
-                        {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 4  , INF, 0  , 1  },
-                        {100, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 1  , 3  , INF, INF, INF, 1  , 0  }};*/
-    
-    int** graph3= adjacencyMatrixGenerator(V,.1,100,true);
-    dijkstra(V, graph3, 0);
-    
- // g++ -std=c++11 Dijkstra.cpp
-    
-    return 0;
-}
