@@ -79,7 +79,7 @@ void dijkstra(int V, int** graph, int src)
 // driver program to test above function
 int main()
 {
-   int V = 100;
+   int V = 2000;
    /* Let us create the example graph discussed above */
    /*int graph2[V][V] = { {0  , 3  , 2  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 100},
                         {3  , 0  , INF, INF, INF, INF, INF, 3  , 6  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
@@ -102,7 +102,7 @@ int main()
                         {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 4  , INF, 0  , 1  },
                         {100, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 1  , 3  , INF, INF, INF, 1  , 0  }};*/
     
-    int** graph3= adjacencyMatrixGenerator(V,2,100,true);
+    int** graph3= adjacencyMatrixGenerator(V,.1,100,true);
     dijkstra(V, graph3, 0);
     
  // g++ -std=c++11 Dijkstra.cpp

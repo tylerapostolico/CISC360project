@@ -3,11 +3,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
+
+#include "RandGraph.cpp"
+
+
+#define INF 99999
+
  
 // a structure to represent a weighted edge in graph
 struct Edge
 {
-    char src, dest, weight;
+    int src, dest, weight;
 };
  
 // a structure to represent a connected, directed and 
@@ -38,7 +44,7 @@ struct Graph* createGraph(int V, int E)
 }
  
 // A utility function used to print the solution
-void printArr(int dist[], int n)
+void printArr(int* dist, int n)
 {
     printf("Vertex   Distance from Source\n");
     for (int i = 0; i < n; ++i)
@@ -49,11 +55,37 @@ void printArr(int dist[], int n)
 // all other vertices using Bellman-Ford algorithm.  The function
 // also detects negative weight cycle
 
-void BellmanFord(struct Graph* graph, int src)
+void BellmanFord(int** input, int src, int V)
 {
-    int V = graph->V;
-    int E = graph->E;
-    int dist[V];
+    int E = 0;
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            if ((input[i][j] != INF) && (input[i][j] != 0)) {
+                E++;
+            }
+        }
+    }
+    
+    cout << E;
+    
+    Graph* graph = createGraph(V, E);
+    
+    int k = 0;
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            if ((input[i][j] != INF) && (input[i][j] != 0)) {
+                graph->edge[k].src = i;
+                graph->edge[k].dest = j;
+                graph->edge[k].weight = input[i][j];
+                k++;
+            }
+        }
+    }
+    
+    
+    //int V = graph->V;
+    //int E = graph->E;
+    int* dist = new int[V];
  
     // Step 1: Initialize distances from src to all other vertices
     // as INFINITE
@@ -98,7 +130,7 @@ void BellmanFord(struct Graph* graph, int src)
 int main()
 {
     /* Let us create the graph given in above example */
-    int V = 20;  // Number of vertices in graph
+    int V = 200;  // Number of vertices in graph
     int E = 31;  // Number of edges in graph
     struct Graph* graph = createGraph(V, E);
  
@@ -231,8 +263,47 @@ int main()
 
    //end of our first graph
  
-    BellmanFord(graph, 0);
- 
+    //BellmanFord(graph, 0);
+    
+
+    // int ** graph2 = new int*[20];
+    
+    // int graph3[20][20] =  {{0  , 3  , 2  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 100},
+    //                     {3  , 0  , INF, INF, INF, INF, INF, 3  , 6  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+    //                     {2  , INF, 0  , INF, 1  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+    //                     {INF, INF, INF, 0  , INF, INF, INF, INF, 3  , 4  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+    //                     {INF, INF, 1  , INF, 0  , INF, 1  , 2  , INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF},
+    //                     {INF, INF, INF, INF, INF, 0  , 1  , INF, INF, INF, INF, 1  , INF, INF, INF, INF, INF, INF, INF, INF},
+    //                     {INF, INF, INF, INF, 1  , 1  , 0  , INF, INF, INF, INF, 3  , INF, INF, INF, 4  , INF, INF, INF, INF},
+    //                     {INF, 3  , INF, INF, 2  , INF, INF, 0  , 7  , INF, INF, INF, 4  , INF, INF, 1  , INF, INF, INF, INF},
+    //                     {INF, 6  , INF, 3  , INF, INF, INF, 7  , 0  , 5  , INF, INF, INF, 6  , INF, INF, INF, INF, INF, INF},
+    //                     {INF, INF, INF, 4  , INF, INF, INF, INF, 5  , 0  , 1  , INF, INF, INF, 6  , INF, INF, INF, INF, INF},
+    //                     {INF, INF, INF, INF, INF, INF, INF, INF, INF, 1  , 0  , INF, INF, INF, 2  , INF, INF, INF, INF, INF},
+    //                     {INF, INF, INF, INF, INF, 1  , 3  , INF, INF, INF, INF, 0  , INF, INF, INF, 2  , INF, INF, INF, INF},
+    //                     {INF, INF, INF, INF, INF, INF, INF, 4  , INF, INF, INF, INF, 0  , INF, INF, INF, 1  , 2  , INF, INF},
+    //                     {INF, INF, INF, INF, INF, INF, INF, INF, 6  , INF, INF, INF, INF, 0  , INF, INF, 3  , INF, INF, 1  },
+    //                     {INF, INF, INF, INF, INF, INF, INF, INF, INF, 6  , 2  , INF, INF, INF, 0  , INF, INF, INF, INF, 3  },
+    //                     {INF, INF, INF, INF, INF, INF, 4  , 1  , INF, INF, INF, 2  , INF, INF, INF, 0  , INF, INF, INF, INF},
+    //                     {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 1  , 3  , INF, INF, 0  , 2  , 4  , INF},
+    //                     {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 2  , INF, INF, INF, 2  , 0  , INF, INF},
+    //                     {INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 4  , INF, 0  , 1  },
+    //                     {100, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, INF, 1  , 3  , INF, INF, INF, 1  , 0  }};
+     
+
+    // for (int i = 0; i < 10; i++) {
+    //     for (int j = 0; j < 10; j++) {
+    //         graph2[i][j] = graph3[i][j];
+    //     }
+    // } 
+    
+        
+    
+    //int** graph2 = graph3;
+    
+
+    int** graph3= adjacencyMatrixGenerator(V,2,100,true);
+
+    BellmanFord(graph3,0,V);
     return 0;
 }
 

@@ -13,14 +13,16 @@
  using namespace std;
  
 // A function to print the solution matrix
-void printSolution(int V, int** dist);
+//void printSolution(int V, int dist[][]);
  
 // Solves the all-pairs shortest path problem using Floyd Warshall algorithm
 void floydWarshell (int V, int** graph)
 {
     /* dist[][] will be the output matrix that will finally have the shortest 
       distances between every pair of vertices */
-    int** dist = new int[V][V];
+    
+    //int** dist = new int*[V];
+    int** dist = graph;
     int i, j, k;
  
     /* Initialize the solution matrix same as input graph matrix. Or 
@@ -52,9 +54,28 @@ void floydWarshell (int V, int** graph)
             }
         }
     }
+    
+    
+    cout<<("Following matrix shows the shortest distances between every pair of vertices ")<<endl;
+    for (int i = 0; i < V; i++)
+    {
+        for (int j = 0; j < V; j++)
+        {
+            if (dist[i][j] == INF)
+                cout<<("INF ");
+            else
+                cout<<(dist[i][j]) << (" ");
+        }
+        cout<<endl;
+    }
+    
+    cout <<("This shows the shortest distance of every point from the source") << endl;
+    for (int i = 0; i<V; i++) {
+        cout <<(i) << ("    ") << dist[0][i] << endl;
+    }
  
     // Print the shortest distance matrix
-    printSolution(V, dist);
+    //printSolution(V, dist);
 }
  
 /* A utility function to print solution */
@@ -66,9 +87,9 @@ void printSolution(int V, int** dist)
         for (int j = 0; j < V; j++)
         {
             if (dist[i][j] == INF)
-                cout<<("INF");
+                cout<<("INF ");
             else
-                cout<<(dist[i][j]);
+                cout<<(dist[i][j]) <<(" ");
         }
         cout<<endl;
     }
