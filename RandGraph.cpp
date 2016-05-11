@@ -21,8 +21,6 @@ int** adjacencyMatrixGenerator(int n, double percent, int largestWeight, bool tw
     
     largestWeight--;
     
-    srand(time(NULL));
-    
     
     double p = (percent * .01) * n; 
 	double newPercent = n + p;
