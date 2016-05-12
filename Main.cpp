@@ -71,6 +71,7 @@ int main(){
     diff = 1000000000 * (end.tv_sec - start.tv_sec) + end.tv_nsec - start.tv_nsec;
     cout<<"Compilation time(dij, 3000, dense): "<<diff<< " nanoseconds" << endl;
     
+    
     clock_gettime(CLOCK_MONOTONIC, &start);
     floydWarshell(10, graph1);
     clock_gettime(CLOCK_MONOTONIC, &end);
@@ -105,6 +106,7 @@ int main(){
     
     diff = 1000000000 * (end.tv_sec - start.tv_sec) + end.tv_nsec - start.tv_nsec;
     cout<<"Compilation time(floyd, 3000, dense): "<<diff<< " nanoseconds" << endl;
+    
     
     clock_gettime(CLOCK_MONOTONIC, &start);
     BellmanFord(10, graph1, 0);
@@ -143,7 +145,11 @@ int main(){
     
     
     
-    
+   
+   
+   
+   
+   
     clock_gettime(CLOCK_MONOTONIC, &start);
     dijkstra(10, graph6, 0);
     clock_gettime(CLOCK_MONOTONIC, &end);
@@ -179,6 +185,7 @@ int main(){
     diff = 1000000000 * (end.tv_sec - start.tv_sec) + end.tv_nsec - start.tv_nsec;
     cout<<"Compilation time(dij, 3000, sparse): "<<diff<< " nanoseconds" << endl;
     
+   
     clock_gettime(CLOCK_MONOTONIC, &start);
     floydWarshell(10, graph6);
     clock_gettime(CLOCK_MONOTONIC, &end);
@@ -214,6 +221,7 @@ int main(){
     diff = 1000000000 * (end.tv_sec - start.tv_sec) + end.tv_nsec - start.tv_nsec;
     cout<<"Compilation time(floyd, 3000, sparse): "<<diff<< " nanoseconds" << endl;
     
+    
     clock_gettime(CLOCK_MONOTONIC, &start);
     BellmanFord(10, graph6, 0);
     clock_gettime(CLOCK_MONOTONIC, &end);
@@ -248,5 +256,6 @@ int main(){
     
     diff = 1000000000 * (end.tv_sec - start.tv_sec) + end.tv_nsec - start.tv_nsec;
     cout<<"Compilation time(bell, 3000, sparse): "<<diff<< " nanoseconds" << endl;
+    
 return 0;
 }
